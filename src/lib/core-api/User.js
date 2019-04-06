@@ -16,4 +16,19 @@ export class User extends Resource {
       refreshToken: get(data, 'refresh_token'),
     }));
   }
+
+  getNewTokenWithRefreshToken(refreshToken) {
+    return this.request(
+      'GET',
+      '/api/token/refresh',
+      {
+        refresh_token: refreshToken,
+      },
+      {},
+      { 'content-type': '' },
+    ).then(({ data }) => ({
+      token: get(data, 'token'),
+      refreshToken: get(data, 'refresh_token'),
+    }));
+  }
 }

@@ -1,0 +1,15 @@
+{
+  node{
+    me{
+      teams{
+        id
+        label
+        description
+        projects{
+          id
+          label
+        }
+      }
+    }
+  }
+}

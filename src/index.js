@@ -7,15 +7,16 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import history from './history';
 import store from './store';
+import './styles/build/styles.css';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <Router history={history}>
         <Route path="/" render={() => <App />} />
       </Router>
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );
 

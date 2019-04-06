@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,500i,700');
+
+* {
+  margin: 0;
+}
+html, body, #root, .App {
+  height: 100%;
+  box-sizing: border-box;
+  font-family: $primary-family;
+}
+
+@font-face {
+  font-family: 'gaia';
+  src: url('../svg/gaia.eot');
+  src: url('../svg/gaia.eot?#iefix') format('embedded-opentype'),
+  url('../svg/gaia.woff') format('woff'),
+  url('../svg/gaia.ttf') format('truetype'),
+  url('../svg/gaia.svg#gaia') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class*='icon-']:before{
+  display: inline-block;
+  font-family: 'gaia';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+.icon-project:before{content:'\0041';}
+.icon-team:before{content:'\0042';}
+.icon-back:before{content:'\0043';}
+.icon-edit:before{content:'\0044';}
+.icon-upload:before{content:'\0045';}
+.icon-ticket:before{content:'\004f';}
+.icon-params:before{content:'\0046';}
+.icon-logout:before{content:'\0047';}
+.icon-more:before{content:'\0048';}
+.icon-full:before{content:'\0049';}
+.icon-refresh:before{content:'\004a';}
+.icon-search:before{content:'\004b';}
+.icon-caution:before{content:'\004c';}
+.icon-graph:before{content:'\004d';}
+.icon-send:before{content:'\004e';}
+.icon-info:before{content:'\0050';}
+.icon-link:before{content:'\0051';}
+.icon-add:before{content:'\0052';}
+.icon-check:before{content:'\0053';}

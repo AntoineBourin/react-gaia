@@ -18,6 +18,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/forbid-prop-types": "off",
     "no-trailing-spaces": "off",
+    "import/no-cycle": "off",
     "import/no-named-as-default": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "no-return-assign": "off",

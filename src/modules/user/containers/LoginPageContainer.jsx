@@ -5,7 +5,7 @@ import { authenticateAndLogin } from '../actions/account';
 
 const mapStateToProps = state => ({
   accountData: state.user.account.accountData,
-  isUserDefined: !!state.user.account.accountData.token,
+  isUserLoggedIn: state.user.account.isUserLoggedIn,
   isFetchingAccount: state.user.account.fetchingAccount,
   loginError: state.user.account.loginError,
 });

@@ -1,0 +1,106 @@
+#connected-template {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  .sidebar {
+    position: relative;
+    border-right: 2px solid $border-color;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    width: 15vw;
+    height: 100%;
+
+    .side-header {
+      .logo {
+        border-bottom: 2px solid $border-color;
+
+        img {
+          width: 60%;
+          margin: -20px auto;
+          display: block;
+        }
+      }
+    }
+
+    nav {
+      ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+          a {
+            border-bottom: 1px solid $border-color;
+            padding-left: 10%;
+            padding-top: 17px;
+            padding-bottom: 17px;
+            font-weight: normal;
+            color: #636363;
+            font-size: 15px;
+            display: block;
+            text-decoration: none;
+            transition: all ease-in-out .3s;
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .icon {
+              padding-right: 10px;
+              color: #00000080;
+            }
+          }
+
+          &.active {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 3px solid $blue-color;
+          }
+        }
+      }
+    }
+
+    footer {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-around;
+
+      > div {
+        width: 50%;
+        border-left: 1px solid $border-color;
+        border-top: 1px solid $border-color;
+        min-height: 50px;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+        }
+
+        .icon {
+          padding-right: 10px;
+          color: #00000080;
+        }
+      }
+    }
+  }
+
+  .content {
+    box-shadow: inset 2px 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 30px 50px;
+    width: 100%;
+
+    h1 {
+      font-weight: 400;
+      font-size: 22px;
+    }
+  }
+}

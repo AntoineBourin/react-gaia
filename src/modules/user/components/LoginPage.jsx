@@ -5,32 +5,31 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import BasicForm from '../../../lib/components/form/BasicForm';
 import TextField from '../../../lib/components/form/field/TextField';
-import SubmitField from '../../../lib/components/form/field/SubmitField';
-import { routes } from '../../../routes';
 import InlineError from '../../../lib/components/ui/InlineError';
+import { routes } from '../../../routes';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
 
-const LoginPage = ({ isFetchingAccount, isUserDefined, handleUserLoggedIn, loginError }) => (
+const LoginPage = ({ isFetchingAccount, isUserLoggedIn, handleUserLoggedIn, loginError }) => (
   <div>
-    {isFetchingAccount || !isUserDefined ? (
-      <BasicForm schema={schema} onSubmit={handleUserLoggedIn}>
-        <TextField type="text" name="email" placeholder="E-mail" />
-        <TextField type="password" name="password" placeholder="Mot de passe" />
-        <SubmitField value="Connexion" disabled={isFetchingAccount} />
-      </BasicForm>
-    ) : <Redirect to={routes.dashboard} />
-    }
+    {!isUserLoggedIn
+      ? (
+        <BasicForm schema={schema} onUpdate={() => {}} onSubmit={handleUserLoggedIn} initialValues={{}}>
+          <TextField type="text" name="email" placeholder="E-mail" />
+          <TextField type="password" name="password" placeholder="Mot de passe" />
+          <input type="submit" value="Connexion" disabled={isFetchingAccount} />
+        </BasicForm>
+      ) : <Redirect to={routes.dashboard} />}
     <InlineError error={loginError} />
   </div>
 );
 
 LoginPage.propTypes = {
   isFetchingAccount: PropTypes.bool.isRequired,
-  isUserDefined: PropTypes.bool.isRequired,
+  isUserLoggedIn: PropTypes.bool.isRequired,
   handleUserLoggedIn: PropTypes.func.isRequired,
   loginError: PropTypes.string,
 };

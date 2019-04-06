@@ -1,10 +1,16 @@
+import decode from 'jwt-decode';
 import { createReducer } from '../../../lib/redux/helper';
 import { FETCHING_USER, SET_ACCOUNT, SET_LOGIN_ERROR } from '../actions/constant';
+import { isAuthTokenExpired } from '../../../lib/core-api/authentication';
+import userStorage from '../../../lib/storage/UserStorage';
 
 const initialState = {
   fetchingAccount: false,
-  accountData: {},
+  accountData: {
+    accountDetails: decode(userStorage.getUserInformations().token) || {},
+  },
   loginError: null,
+  isUserLoggedIn: !isAuthTokenExpired(),
 };
 
 const actionHandlers = {

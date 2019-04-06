@@ -1,0 +1,2 @@
+export const FETCHING_TEAMS = 'FETCHING_TEAMS';
+export const SET_USER_TEAMS = 'SET_USER_TEAMS';
