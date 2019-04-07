@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ConnectedTemplate from './ConnectedTemplate';
 
 const Dashboard = () => (

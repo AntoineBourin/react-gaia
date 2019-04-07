@@ -7,7 +7,7 @@ import userStorage from '../../../lib/storage/UserStorage';
 const initialState = {
   fetchingAccount: false,
   accountData: {
-    accountDetails: decode(userStorage.getUserInformations().token) || {},
+    accountDetails: userStorage.getUserInformations() ? decode(userStorage.getUserInformations().token) : {},
   },
   loginError: null,
   isUserLoggedIn: !isAuthTokenExpired(),

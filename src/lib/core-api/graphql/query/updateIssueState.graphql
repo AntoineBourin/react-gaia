@@ -1,0 +1,9 @@
+mutation updateIssueState($id: ID!, $stateId: ID!) {
+    updateIssue(id: $id, input: {
+        state: $stateId
+    }) {
+        state{
+            id
+        }
+    }
+}

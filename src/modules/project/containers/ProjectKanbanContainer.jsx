@@ -4,21 +4,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ProjectKanban from '../components/ProjectKanban';
-import { getTeamsProjectInfo } from '../../team/actions/teams';
+import { getIssuesByProjectId } from '../actions/issue';
 
-const mapStateToProps = state => ({
-  teams: state.team.teams.teamsInformations,
-  isFetchingTeams: state.team.teams.fetchingTeams,
-});
+const mapStateToProps = (state, { projectId }) => {
+  const { project } = state.project;
+  return {
+    isFetchingIssues: project.fetchingIssues,
+    currentProject: project.projects[projectId] || null,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  getTeamsProjectInformations: () => dispatch(getTeamsProjectInfo()),
+  getProjectIssues: projectId => dispatch(getIssuesByProjectId(projectId)),
 });
 
 class ProjectKanbanContainer extends React.PureComponent {
   componentWillMount() {
-    const { getTeamsProjectInformations } = this.props;
-    getTeamsProjectInformations();
+    const { projectId, getProjectIssues } = this.props;
+    getProjectIssues(projectId);
   }
 
   render() {
@@ -29,7 +32,8 @@ class ProjectKanbanContainer extends React.PureComponent {
 }
 
 ProjectKanbanContainer.propTypes = {
-  getTeamsProjectInformations: PropTypes.func.isRequired,
+  projectId: PropTypes.string.isRequired,
+  getProjectIssues: PropTypes.func.isRequired,
 };
 
 export default connect(
