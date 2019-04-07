@@ -1,0 +1,16 @@
+query getProjectStateIssues($id: ID!) {
+    node {
+        project(id: $id) {
+            label
+            id
+            states {
+                id
+                label
+                issues {
+                    id
+                    title
+                }
+            }
+        }
+    }
+}

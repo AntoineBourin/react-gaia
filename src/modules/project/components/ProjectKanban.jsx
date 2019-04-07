@@ -1,30 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-const ProjectKanban = ({ teams, isFetchingTeams }) => (
-  <div>
-    <h2>Teams</h2>
-    {isFetchingTeams && <p>Loading...</p>}
-    <ul>
-      {!isFetchingTeams && teams && teams.map(team => (
-        <li key={team.id}>
-          {team.label} - {team.description}
-          <ul>
-            {team.projects.map(project => (
-              <li key={project.id}><a href={`/project/${project.id}`}>{project.label}</a></li>
+import ConnectedTemplate from '../../basepage/components/ConnectedTemplate';
+import ProjectStateContainer from '../containers/ProjectStateContainer';
+
+const ProjectKanban = ({ currentProject }) => (
+  <ConnectedTemplate>
+    {currentProject
+    && (
+      <div className="project">
+        <h1>Projet <strong>{currentProject.label}</strong></h1>
+        <DragDropContextProvider backend={HTML5Backend}>
+          <div className="states">
+            {currentProject.states
+            && Object.values(currentProject.states).map(state => (
+              <ProjectStateContainer projectId={currentProject.id} key={state.id} projectState={state} />
             ))}
-          </ul>
-        </li>
-      ))}
-    </ul>
-  </div>
+          </div>
+        </DragDropContextProvider>
+      </div>
+    )}
+  </ConnectedTemplate>
 );
 
 ProjectKanban.propTypes = {
-  teams: PropTypes.array.isRequired,
-  isFetchingTeams: PropTypes.bool.isRequired,
+  currentProject: PropTypes.object,
 };
 
-ProjectKanban.defaultProps = ({});
+ProjectKanban.defaultProps = ({
+  currentProject: {},
+});
 
 export default ProjectKanban;

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import logo from '../../../logo.png';
 import { routes } from '../../../routes';
 
@@ -13,13 +13,13 @@ const ConnectedSidebar = () => (
     <nav>
       <ul>
         <li className="active">
-          <a href={routes.dashboard}><span className="icon icon-graph" /> Tableau de bord</a>
+          <Link to={routes.dashboard}><span className="icon icon-graph" /> Tableau de bord</Link>
         </li>
         <li>
           <a href={routes.dashboard}><span className="icon icon-team" /> Teams</a>
         </li>
         <li>
-          <a href={routes.dashboard}><span className="icon icon-project" /> Projets</a>
+          <Link to={routes.project.replace(':id', 1)}><span className="icon icon-project" /> Projets</Link>
         </li>
         <li>
           <a href={routes.dashboard}><span className="icon icon-ticket" /> Tickets</a>

@@ -2,3 +2,8 @@
 @import "global/variables";
 @import "global/connected-template";
 @import "global/global";
+
+/** Kanban **/
+@import "kanban/project";
+@import "kanban/states";
+@import "kanban/issue";

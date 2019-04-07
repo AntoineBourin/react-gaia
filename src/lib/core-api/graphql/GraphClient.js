@@ -25,6 +25,10 @@ export class GraphClient {
     return this.client.query({ query, variables });
   }
 
+  mutate(mutation, variables) {
+    return this.client.mutate({ mutation, variables });
+  }
+
   catchClientErrors(error) {
     if (error && error.networkError.statusCode === 401) {
       const refreshToken = userStorage.getUserInformationsByKey('refreshToken');
@@ -60,3 +64,5 @@ export class GraphClient {
     error.forward(error.operation).subscribe(subscriber);
   }
 }
+
+export default new GraphClient();
