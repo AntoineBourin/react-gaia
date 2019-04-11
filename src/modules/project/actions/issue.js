@@ -3,7 +3,7 @@ import { FETCHING_ISSUES, SET_PROJECT_STATES, ADD_ISSUES, SET_ISSUES_LIST } from
 import graphClient from '../../../lib/core-api/graphql/GraphClient';
 import projectStateIssuesQuery from '../../../lib/core-api/graphql/query/projectStateIssues.graphql';
 import updateIssueState from '../../../lib/core-api/graphql/query/updateIssueState.graphql';
-import { findIssueIndexById } from '../reducers/issue';
+import { findIssueById, findIssueIndexById } from '../reducers/issue';
 
 export const fetchingIssues = makeActionCreator(FETCHING_ISSUES);
 export const setProjectStates = makeActionCreator(SET_PROJECT_STATES, 'project');
@@ -34,14 +34,21 @@ export const getIssuesByProjectId = (projectId) => (dispatch, getState) => {
     });
 };
 
-export const moveIssueToState = (issueId, stateTargetId) => (dispatch, getState) => {
-  const issueIndex = findIssueIndexById(getState(), issueId);
+export const updateIssueLocally = (issueId, updatedIssue) => (dispatch, getState) => {
+  const issueIndex = findIssueIndexById(getState(), issueId.toString());
   if (issueIndex === -1) {
     return;
   }
-  graphClient.mutate(updateIssueState, { id: issueId, stateId: stateTargetId });
   const issuesList = getState().project.issue.issues;
   const newIssues = [...issuesList];
-  newIssues[issueIndex].stateId = stateTargetId;
+  newIssues[issueIndex] = updatedIssue;
   dispatch(setIssuesList(newIssues));
+};
+
+export const moveIssueToState = (issueId, stateTargetId) => (dispatch, getState) => {
+  const issue = findIssueById(getState(), issueId.toString());
+  issue.stateId = stateTargetId;
+  dispatch(updateIssueLocally(issueId, issue));
+
+  graphClient.mutate(updateIssueState, { id: issueId, stateId: stateTargetId });
 };
