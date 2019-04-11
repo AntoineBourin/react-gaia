@@ -19,6 +19,9 @@ const actionHandlers = {
 export const getIssuesByState = (state, projectStateId) => (
   state.project.issue.issues.filter(issue => issue.stateId === projectStateId));
 
+export const findIssueById = (state, issueId) => (
+  state.project.issue.issues.find(issue => issue.id === issueId));
+
 export const findIssueIndexById = (state, issueId) => (
   state.project.issue.issues.findIndex(issue => issue.id === issueId));
 
